@@ -2,30 +2,30 @@
 #include<fstream>
 #include<string>
 using namespace std;
-#define NUM 1000
-    void read(); //¶ÁÈ¡
-	void write();//±£´æ
-	void find();//²éÑ¯
-	void list();//ä¯ÀÀ
-	void modify();//ĞŞ¸Ä
-	void del();//É¾³ı
-	void add();//Ìí¼Ó
-	int grsds(float a);//¼ÆËã¸öÈËËùµÃË°
-	void menu();//Ö÷½çÃæ
-	int n;//Ö°¹¤×ÜÊı
+void read(); //è¯»å–
+void write();//ä¿å­˜
+void find();//æŸ¥è¯¢
+void list();//æµè§ˆ
+void modify();//ä¿®æ”¹
+void del();//åˆ é™¤
+void add();//æ·»åŠ 
+int grsds(float a);//è®¡ç®—ä¸ªäººæ‰€å¾—ç¨
+void menu();//ä¸»ç•Œé¢
+int n;//èŒå·¥æ€»æ•°
 	
 struct zggz
 {  
 		int gongh;
-		char name[8];
-		float wage1;        //¸ÚÎ»¹¤×Ê
-		float wage2;        //Ğ½¼¶¹¤×Ê
-		float wage3;		//Ö°Îñ½òÌù
-		float wage4;        //¼¨Ğ§¹¤×Ê
-        float wage5;        //Ó¦·¢¹¤×Ê
-		float wage6;        //¸öÈËËùµÃË°
-		float wage7;        //Êµ·¢¹¤×Ê
+		char name[20];
+		float wage1;        //å²—ä½å·¥èµ„
+		float wage2;        //è–ªçº§å·¥èµ„
+		float wage3;		//èŒåŠ¡æ´¥è´´
+		float wage4;        //ç»©æ•ˆå·¥èµ„
+        float wage5;        //åº”å‘å·¥èµ„
+		float wage6;        //ä¸ªäººæ‰€å¾—ç¨
+		float wage7;        //å®å‘å·¥èµ„
 };
+zggz zggz0[50];
 
 
 void main()
@@ -39,24 +39,24 @@ void menu()
 		{
 			system("cls");
 		
-			cout<<"<------------Ö°¹¤¹¤×Ê¹ÜÀíÏµÍ³------------>"<<endl;
-			cout<<"|                 1.¶ÁÈ¡                 |"<<endl;
-			cout<<"|                 2.±£´æ                 |"<<endl;
-			cout<<"|                 3.²éÑ¯                 |"<<endl;
-			cout<<"|                 4.ä¯ÀÀ                 |"<<endl;
-			cout<<"|                 5.ĞŞ¸Ä                 |"<<endl;
-			cout<<"|                 6.É¾³ı                 |"<<endl;
-			cout<<"|                 7.Ìí¼Ó                 |"<<endl;
-			cout<<"|                 8.ÍË³ö                 |"<<endl;
+			cout<<"<------------èŒå·¥å·¥èµ„ç®¡ç†ç³»ç»Ÿ------------>"<<endl;
+			cout<<"|                 1.è¯»å–                 |"<<endl;
+			cout<<"|                 2.ä¿å­˜                 |"<<endl;
+			cout<<"|                 3.æŸ¥è¯¢                 |"<<endl;
+			cout<<"|                 4.æµè§ˆ                 |"<<endl;
+			cout<<"|                 5.ä¿®æ”¹                 |"<<endl;
+			cout<<"|                 6.åˆ é™¤                 |"<<endl;
+			cout<<"|                 7.æ·»åŠ                  |"<<endl;
+			cout<<"|                 8.é€€å‡º                 |"<<endl;
 			cout<<"<---------------------------------------->"<<endl;
-			cout<<"              ÇëÊäÈëÄãµÄÑ¡Ôñ£º            "<<endl;
+			cout<<"              è¯·è¾“å…¥ä½ çš„é€‰æ‹©ï¼š            "<<endl;
  
 
 		cin>>n;
 		if(n<1||n>9)
 		{
 			w1=1;
-            cout<<"ÄãµÄÑ¡Ôñ²»ÔÙ·¶Î§ÄÚ£¬ÇëÖØĞÂÊäÈë"<<endl;
+            cout<<"ä½ çš„é€‰æ‹©ä¸å†èŒƒå›´å†…ï¼Œè¯·é‡æ–°è¾“å…¥"<<endl;
 			getchar();
 		}
 		else w1=0;
@@ -66,59 +66,117 @@ switch(n)
 	{
 		case 1:read(); break;
 	
-	//	case 2:find(); break;
-	//	case 3:list(); break;
+    	case 2:find(); break;
+		case 3:list(); break;
 	//	case 4:modify(); break;
 		//case 5:del(); break;
 		case 6:add(); break;
-    	case 7:cout<<"Ğ»Ğ»£¬»¶Ó­ÏÂ´ÎÆô¶¯"<<endl;
-		default:exit(0);       }//ÍË³öÏµÍ³
+    	case 7:cout<<"è°¢è°¢ï¼Œæ¬¢è¿ä¸‹æ¬¡å¯åŠ¨"<<endl;
+		default:exit(0);       }//é€€å‡ºç³»ç»Ÿ
 
 }
 
 void read()
 {
-	zggz zggz0[50];
+
 	ifstream in("gz.dat",ios::binary);
 	if(!in)
 	{
-		cout<<"´ò¿ªÎÄ¼şÊ§°Ü"<<endl;
-		abort();//ÍË³ö³ÌĞò
+		cout<<"æ‰“å¼€æ–‡ä»¶å¤±è´¥"<<endl;
+		abort();//é€€å‡ºç¨‹åº
 	}
-	for(int i=0;i<50;i++)
-	{
-		in.read((char *) &zggz0[i],sizeof(zggz0[i]));
-		cout<<zggz0[i].gongh <<"  "<<zggz0[i].name<<"  "<<zggz0[i].wage1<<"  "<<zggz0[i].wage2<<"  "
-			<<zggz0[i].wage3<<"  "<<zggz0[i].wage4<<"  "<<zggz0[i].wage5<<"  "<<zggz0[i].wage6<<"  "<<zggz0[i].wage7<<endl;
+
+	in.read((char *) &::zggz0,sizeof(::zggz0));
+	in.close;
+	for(int n=0;n<50;n++)
+	{ 
+	if(::zggz0[n].gongh!=NULL)
+		::n=::zggz0[n].gongh;
+	else
+		break;
 	}
-	in.close();
 }
-void write(zggz zggz0)
+	/*	cout<<zggz0[i].gongh<<"  "<<zggz0[i].name<<"  "<<zggz0[i].wage1<<"  "<<zggz0[i].wage2<<"  "
+			<<zggz0[i].wage3<<"  "<<zggz0[i].wage4<<"  "<<zggz0[i].wage5<<"  "<<zggz0[i].wage6<<"  "<<zggz0[i].wage7<<endl;*/
+
+void write(zggz *p,int j)
 {
 	ofstream out("gz.dat",ios::binary);
 	if(!out)
 	{
-		cout<<"´ò¿ªÎÄ¼şÊ§°Ü"<<endl;
+		cout<<"Cannot open out put file"<<endl;
 		abort();
 	}
-
-		out.write((char *) &zggz0,sizeof(zggz0));
-
+    for(int i=0;i<j+1;i++)
+	{
+		out.write((char *) &*p,sizeof(*p));  
+		p++;
+    }
 	out.close();
 }
+
+
+
+
+
 void find()
 {
+  read();
+	 
+	      int j;
+		  cout<<"è¯·è¾“å…¥ä½ è¦æŸ¥è¯¢çš„å·¥å·ï¼š"<<endl;
+		  cin>>j;
+		  if(1<=j&&j<=::n)
+		  {
+		   	cout<<::zggz0[j-1].gongh<<" "<<::zggz0[j-1].name<<" "<<::zggz0[j-1].wage1<<" "<<::zggz0[j-1].wage2
+			<<" "<<::zggz0[j-1].wage3<<" "<<::zggz0[j-1].wage4<<" "<<::zggz0[j-1].wage5<<" "<<zggz0[j-1].wage6<<endl;  
+		  }
+	   else
+		   cout<<"æ²¡æœ‰è¿™ä¸€é¡¹æ•°æ®"<<endl;
+	   
+
+
 }
+
+void list()
+{
+ read();
+	for(int i=0;i<::n;i++)
+	{
+
+		cout<<::zggz0[i].gongh<<" "<<::zggz0[i].name<<" "<<::zggz0[i].wage1<<" "<<::zggz0[i].wage2<<" "
+			<<::zggz0[i].wage3<<" "<<::zggz0[i].wage4<<" "<<::zggz0[i].wage5<<" "<<zggz0[i].wage6<<endl;
+	}
+menu();
+
+
+}  
+
+
+
+
+
+
+
 void add()
 {
-	zggz zggz1[50];
-	int gongh1;
-    char name1[8];
-    float wage01,wage02,wage03,wage04;
-	for(int i=0;i<50;i++)
+	int i;
+	zggz zggz1[50],*p;
+	p=zggz1;
+	read();
+	cout<<::n<<endl;
+	for(int j=0;j<::n;j++)
 	{
-	cout<<"Çë°´Ë³ĞòÊäÈë¹¤ºÅ  ĞÕÃû  ¸ÚÎ»¹¤×Ê  Ğ½¼¶¹¤×Ê  Ö°Îñ½òÌù  Ğ§¼¨¹¤×Ê"<<endl;
-    cin>>gongh1>>" ">>name1>>" ">>wage01>>" ">>wage02>>" ">>wage03>>" ">>wage04;
+	 zggz1[j]=zggz0[j];
+	
+	}
+	for(i=::n;i<100;i++)
+	{
+	int gongh1;
+    char name1[20];
+    float wage01,wage02,wage03,wage04;
+	cout<<"è¯·æŒ‰é¡ºåºè¾“å…¥å·¥å·  å§“å  å²—ä½å·¥èµ„  è–ªçº§å·¥èµ„  èŒåŠ¡æ´¥è´´  æ•ˆç»©å·¥èµ„"<<endl;
+    cin>>gongh1>>name1>>wage01>>wage02>>wage03>>wage04;
 	zggz1[i].gongh=gongh1;
 	strcpy(zggz1[i].name,name1);
 	zggz1[i].wage1=wage01;
@@ -128,9 +186,10 @@ void add()
 	zggz1[i].wage5=wage01+wage02+wage03+wage04;
 	zggz1[i].wage6=grsds(zggz1[i].wage5);
 	zggz1[i].wage7=zggz1[i].wage5-zggz1[i].wage6;
-	write(zggz1[i]);
+
 
 	}
+	write(p,i);
 }
 int grsds(float a)
 {
