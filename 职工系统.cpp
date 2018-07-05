@@ -39,7 +39,8 @@ void del();//删除
 void add();//添加
 int grsds(float a);//计算个人所得税
 void menu();//主界面
-int number,oup;//职工总数
+int number;//职工总数
+int oup;
 struct zggz
 {  
 		int gongh;
@@ -101,7 +102,7 @@ switch(n)
     	case 2:modify(); break;
 		case 3:add(); break;
 		case 4:del(); break;
-		case 5:write(::p,::oup); break;
+		case 5:write( p, oup); break;
 		case 6:list(); break;
     	case 7:printf("谢谢，欢迎下次启动\n");
 		default:exit(0);      
@@ -139,16 +140,16 @@ void read()  //读取职工信息函数
     printf("Cannot open output file.\n");
 	abort();  //退出程序
 	}
-    in.read((char *)&::zggz0,sizeof(::zggz0));
+    in.read((char *)& zggz0,sizeof( zggz0));
 	in.close();
     for(int n=0;n<50;n++)
 	{ 
-	if(::zggz0[n].gongh!=NULL)
-		::number=n+1;
+	if( zggz0[n].gongh!=NULL)
+		 number=n+1;
 	else
 		break;
 	}
-   menu();
+    menu();
 	
 }
 	
@@ -195,20 +196,20 @@ void find()  //查找函数
 	int k,i=0,w;
     loop:printf("请输入你要查询的工号\n");//cout<<"请输入你要查询的工号："<<endl;
     scanf("%d",&k);
-	for(int j=0;j<::number;j++)
+	for(int j=0;j<number;j++)
 	{
-		if (k==::zggz0[j].gongh)
+		if (k==zggz0[j].gongh)
 		{
 		   printf("工号\t姓名\t岗位工资\t薪级工资\t职务津贴\t效绩工资\t应发工资\t实发工资\n");
 		   printf("%d\t%s\t%g\t\t%g\t\t%g\t\t%g\t\t%g\t\t%g\n",
-		   ::zggz0[j].gongh,
-		   ::zggz0[j].name,
-   		   ::zggz0[j].wage1,
-		   ::zggz0[j].wage2,
-		   ::zggz0[j].wage3,
-		   ::zggz0[j].wage4,
-		   ::zggz0[j].wage5,
-		   ::zggz0[j].wage7);  
+		   zggz0[j].gongh,
+		   zggz0[j].name,
+   		   zggz0[j].wage1,
+		   zggz0[j].wage2,
+		   zggz0[j].wage3,
+		   zggz0[j].wage4,
+		   zggz0[j].wage5,
+		   zggz0[j].wage7);  
 		   i=k;
 		   printf("重新查询请按1，任意键返回菜单\n");
 		   scanf("%d",&w);
@@ -238,25 +239,25 @@ Output: // 输出全部职工数据
 
 void list()  //浏览函数
 {  
-	if(::number==0)
+	if(number==0)
 	{
-		printf("现存有 %d",::number);
+		printf("现存有 %d", number);
         printf("条员工信息\n");
         printf("\n");
    	}
 	else
 	{
         printf("工号\t姓名\t岗位工资\t薪级工资\t职务津贴\t效绩工资\t应发工资\t实发工资\n");	
-		for(int i=0;i<::number;i++)
+		for(int i=0;i<number;i++)
 		{ 
 			printf("%d\t%s\t%g\t\t%g\t\t%g\t\t%g\t\t%g\t\t%g\n",
-		    ::zggz0[i].gongh,
-		    ::zggz0[i].name,
-		    ::zggz0[i].wage1,
-		    ::zggz0[i].wage2,
-		    ::zggz0[i].wage3,
-		    ::zggz0[i].wage4,
-		    ::zggz0[i].wage5,
+		    zggz0[i].gongh,
+		    zggz0[i].name,
+		    zggz0[i].wage1,
+		    zggz0[i].wage2,
+		    zggz0[i].wage3,
+		    zggz0[i].wage4,
+		    zggz0[i].wage5,
 		    zggz0[i].wage7);  
 		} 
 	}
@@ -280,21 +281,21 @@ void modify()
     zggz *q;
     loop:printf("请输入你要修改的工号：\n");
     scanf("%d",&k);
-	for(int j=0;j<::number;j++)
+	for(int j=0;j< number;j++)
 	{
-		if (k==::zggz0[j].gongh)
+		if (k==zggz0[j].gongh)
 		 {
 			printf("职员信息如下：\n");
 		    printf("工号(1)\t姓名(2)\t岗位工资(3)\t薪级工资(4)\t职务津贴(5)\t效绩工资(6)\t应发工资\t实发工资\n");	
 		    printf("%d\t%s\t%g\t\t%g\t\t%g\t\t%g\t\t%g\t\t%g\n",
-		    ::zggz0[j].gongh,
-		    ::zggz0[j].name,
-		    ::zggz0[j].wage1,
-		    ::zggz0[j].wage2,
-		    ::zggz0[j].wage3,
-		    ::zggz0[j].wage4,
-		    ::zggz0[j].wage5,
-		    ::zggz0[j].wage7,"\n"); 
+		    zggz0[j].gongh,
+		    zggz0[j].name,
+		    zggz0[j].wage1,
+		    zggz0[j].wage2,
+		    zggz0[j].wage3,
+		    zggz0[j].wage4,
+		    zggz0[j].wage5,
+		    zggz0[j].wage7,"\n"); 
 			printf("请输入需要修改的选项（1-6）：\n");
      scanf("%d",&m);
      switch(m)
@@ -303,51 +304,51 @@ void modify()
 		 {
 			 printf("修改后的工号：\t\n"); 
              scanf("%d",&gonghao);
-			 ::zggz0[j].gongh=gonghao;
+			  zggz0[j].gongh=gonghao;
 			 break;
 		 }
 		 case 2:
 		 {
 			 printf("修改后的姓名：\t\n"); 
              scanf("%s",name1);
-			 strcpy(zggz0[i].name,name1);
+			 strcpy(zggz0[j].name,name1);
 			 break;
 		 }
 		  case 3:
 		 {
 			 printf("修改后的岗位工资：\t\n"); 
              scanf("%d",&a1);
-			 ::zggz0[j].wage1=a1;
+			  zggz0[j].wage1=a1;
 			 break;
 		 }
           case 4:
 		 {
 			 printf("修改后的薪级工资：\t\n");
 		     scanf("%d",&a2);
-			 ::zggz0[j].wage2=a2;
+			  zggz0[j].wage2=a2;
 			 break;
 		 }
 		 case 5:
 		 {
 			 printf("修改后的职务津贴：\t\n");
 		    scanf("%d",&a3);
-			 ::zggz0[j].wage3=a3;
+			  zggz0[j].wage3=a3;
 			 break;
 		 }
 		 case 6:
 		 {
 			 printf("修改后的效绩工资：\t\n");
 		    scanf("%d",&a4);
-			 ::zggz0[j].wage4=a4;
+			  zggz0[j].wage4=a4;
 			 break;
 		 }
 	 }
 		   
-		    q=::zggz0;
+		    q=zggz0;
 		    printf("修改成功，保存(1)，任意键返回菜单\n");
 		    scanf("%d",&w);
 		    if(w==1)
-				write(q,::oup);
+				write(q,oup);
 		    else
 			    menu();
 		 }
@@ -373,37 +374,37 @@ Output: // 修改zggz0[]数据
 
 void del() //删除函数
 {
-	 ::p=::zggz0;
+	  p=zggz0;
 	 int gonghao;
 	 printf("请输入要删除的员工工号：\n");
 	 scanf("%d",&gonghao);
-	 for(int i=0;i<::number;i++)
+	 for(int i=0;i<number;i++)
 	 {
-		 if(gonghao==::zggz0[i].gongh)
+		 if(gonghao== zggz0[i].gongh)
 		 {  
 			printf("职员信息如下：\n");
 		    printf("工号\t姓名\t岗位工资\t薪级工资\t职务津贴\t效绩工资\t应发工资\t实发工资\n");	
 		    printf("%d\t%s\t%g\t\t%g\t\t%g\t\t%g\t\t%g\t\t%g\n",
-		    ::zggz0[i].gongh,
-		    ::zggz0[i].name,
-		    ::zggz0[i].wage1,
-		    ::zggz0[i].wage2,
-		    ::zggz0[i].wage3,
-		    ::zggz0[i].wage4,
-		    ::zggz0[i].wage5,
-		    ::zggz0[i].wage7,"\n");  
-			 if(i!=::number)
-			 {
-				 for(;i<::number;i++)
-				 {
-					 ::zggz0[i]=::zggz0[i+1];
-				 }
+		    zggz0[i].gongh,
+		    zggz0[i].name,
+		    zggz0[i].wage1,
+		    zggz0[i].wage2,
+		    zggz0[i].wage3,
+		    zggz0[i].wage4,
+		    zggz0[i].wage5,
+		    zggz0[i].wage7,"\n");  
+			if(i!= number)
+			{
+				for(;i< number;i++)
+				{
+					 zggz0[i]= zggz0[i+1];
+				}
 				
-			 }
-			 else
-			 {
-				 ::number=::number-1;
-			 }
+			}
+			else
+			{
+				 number= number-1;
+			}
 			 
 		 }
 	 }
@@ -413,7 +414,7 @@ void del() //删除函数
 	  scanf("%d",&g);
 	  if(g==1)
 	  {
-		  write(::p,::number);
+		  write(p,number);
 	  }
 	  else
 	  {
@@ -435,12 +436,12 @@ void add()
 {
 	int i;
 	zggz zggz1[50];
-	::p=zggz1;
-	for(int j=0;j<::number;j++)
+	p=zggz1;
+	for(int j=0;j<number;j++)
 	{
-	 zggz1[j]=zggz0[j];	
+	zggz1[j]=zggz0[j];	
 	}
-	for(i=::number;i<50;i++)
+	for(i= number;i<50;i++)
 	{
 	int gongh1;
     char name1[20];
@@ -461,7 +462,7 @@ void add()
 	zggz1[i].wage5=wage01+wage02+wage03+wage04;
 	zggz1[i].wage6=grsds(zggz1[i].wage5);
 	zggz1[i].wage7=zggz1[i].wage5-zggz1[i].wage6;
-	::oup=i;
+	 oup=i;
     printf("是否继续添加？(0(否)/1(是))\n");
 	int k;
 	scanf("%d",&k);
